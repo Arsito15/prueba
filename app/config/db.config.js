@@ -36,5 +36,9 @@ db.Prestamo = require('../models/prestamo.model.js')(sequelize, Sequelize)
 db.Catedratico = require('../models/catedratico.model.js')(sequelize, Sequelize);
 db.Horario = require('../models/horario.model.js')(sequelize, Sequelize);
 db.Ingreso = require('../models/ingreso.model.js')(sequelize, Sequelize);
+db.Tarea = require('../models/tarea.model.js')(sequelize, Sequelize);      // Modelo de Tareas
+db.Usuario = require('../models/usuario.model.js')(sequelize, Sequelize);  // Modelo de Usuario
+db.Pago = require('../models/pago.model.js')(sequelize, Sequelize);        // Modelo de Pagos
+
 
 module.exports = db;
