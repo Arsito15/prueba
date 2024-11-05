@@ -12,7 +12,6 @@ const env = {
     acquire: 30000,
     idle: 10000
   },
-  stripeSecretKey:sk_test_51Q9dNIP4coyds4R4SuVzYTiYeaE3e9clBXw6jxnQjO5VcvhPTLHZpyZqwNS6wq6t2tX5JKr38i5W8xcWiHJ9k6rT00oOGBurRF
 };
 
 module.exports = env;

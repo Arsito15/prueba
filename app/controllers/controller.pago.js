@@ -1,39 +1,25 @@
 const db = require('../config/db.config.js');
 const Pago = db.Pago;
-const stripe = require('stripe')(require('../config/env').stripeSecretKey);
 
-// Crear un nuevo pago y procesarlo con Stripe
+// Crear un nuevo pago en la base de datos
 exports.create = async (req, res) => {
     try {
         // Información del pago desde el cuerpo de la solicitud
         const { tarea_id, usuario_id, metodo_pago, monto } = req.body;
 
-        // Crear un intento de pago en Stripe
-        const paymentIntent = await stripe.paymentIntents.create({
-            amount: Math.round(monto * 100), // Convertir el monto a centavos
-            currency: 'usd',
-            payment_method_types: ['card'], // Sólo tarjetas en este ejemplo
-            metadata: {
-                tarea_id: tarea_id.toString(),
-                usuario_id: usuario_id.toString()
-            }
-        });
-
-        // Guardar en la base de datos como pago pendiente
+        // Guardar el pago en la base de datos
         const pago = await Pago.create({
             tarea_id: tarea_id,
             usuario_id: usuario_id,
             metodo_pago: metodo_pago,
             monto: monto,
-            estado: 'pendiente',
+            estado: 'pendiente',  // Estado inicial del pago
             fecha_pago: new Date()
         });
 
-        // Enviar el `clientSecret` para completar el pago desde el cliente
         res.status(200).json({
-            message: "Pago creado y procesado con éxito",
-            pago: pago,
-            clientSecret: paymentIntent.client_secret
+            message: "Pago creado con éxito",
+            pago: pago
         });
     } catch (error) {
         res.status(500).json({
