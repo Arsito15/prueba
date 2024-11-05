@@ -1,6 +1,6 @@
 const db = require('../config/db.config.js');
 const Pago = db.Pago;
-const stripe = require('stripe')(sk_test_51Q9dNIP4coyds4R4SuVzYTiYeaE3e9clBXw6jxnQjO5VcvhPTLHZpyZqwNS6wq6t2tX5JKr38i5W8xcWiHJ9k6rT00oOGBurRF); // Cargar la clave secreta desde .env
+const stripe = require('stripe')(require('../config/env').stripeSecretKey);
 
 // Crear un nuevo pago y procesarlo con Stripe
 exports.create = async (req, res) => {
