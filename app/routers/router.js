@@ -11,6 +11,9 @@ const prestamo = require('../controllers/controller.prestamo.js');
 const catedratico = require('../controllers/controller.catedratico.js');
 const horario = require('../controllers/controller.horario.js');
 const ingreso = require('../controllers/controller.ingreso.js');
+const tarea = require('../controllers/controller.tarea.js');
+const usuario = require('../controllers/controller.usuario.js');
+const pago = require('../controllers/controller.pago.js');
 
 router.post('/api/catedratico/create', catedratico.create);
 router.get('/api/catedratico/all', catedratico.retrieveAllCatedraticos);
@@ -75,5 +78,28 @@ router.get('/api/prestamos/all', prestamo.retrieveAllPrestamos);
 router.get('/api/prestamos/onebyid/:id', prestamo.getPrestamoById);
 router.put('/api/prestamos/update/:id', prestamo.updateById);
 router.delete('/api/prestamos/delete/:id', prestamo.deleteById);
+
+//3er parcial
+
+// Rutas para Tareas
+router.post('/api/tareas/create', tarea.create);
+router.get('/api/tareas/all', tarea.retrieveAllTareas);
+router.get('/api/tareas/onebyid/:id', tarea.getTareaById);
+router.put('/api/tareas/update/:id', tarea.updateById);
+router.delete('/api/tareas/delete/:id', tarea.deleteById);
+
+// Rutas para Usuarios
+router.post('/api/usuarios/create', usuario.create);
+router.get('/api/usuarios/all', usuario.retrieveAllUsuarios);
+router.get('/api/usuarios/onebyid/:id', usuario.getUsuarioById);
+router.put('/api/usuarios/update/:id', usuario.updateById);
+router.delete('/api/usuarios/delete/:id', usuario.deleteById);
+
+// Rutas para Pagos
+router.post('/api/pagos/create', pago.create);
+router.get('/api/pagos/all', pago.retrieveAllPagos);
+router.get('/api/pagos/onebyid/:id', pago.getPagoById);
+router.put('/api/pagos/update/:id', pago.updateById);
+router.delete('/api/pagos/delete/:id', pago.deleteById);
 
 module.exports = router;
